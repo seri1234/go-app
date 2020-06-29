@@ -1,0 +1,11 @@
+{{define "index"}}
+<blockquote>
+  <div>{{.}}</div>
+</blockquote>
+
+<form action="/post" method="POST">
+  <label for="post">投稿してください: </label>
+  <input type="text" id="post" name="post" />
+  <input type="submit" value ="post" />
+</form>
+{{end}}

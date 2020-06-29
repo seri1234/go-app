@@ -1,0 +1,29 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    command: >
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+    container_name: MySQL
+    environment:
+      MYSQL_USER: user
+      MYSQL_PASSWORD: mysql
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_DATABASE: mydb
+    volumes:
+      - ./mysql
+    ports:
+      - "3306:3306"
+    restart: always
+
+  app:
+    build: .
+    links:
+      - db
+    tty: true
+    volumes:
+      - .:/go/go-app # マウントディレクトリ指定
+    ports:
+      - "8080:8080"
+
